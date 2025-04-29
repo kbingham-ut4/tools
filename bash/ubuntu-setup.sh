@@ -27,7 +27,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Install Powerlevel10k
 echo "Installing Powerlevel10k..."
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+brew install romkatv/powerlevel10k/powerlevel10k
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh..."
@@ -39,9 +39,12 @@ sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 
 # Install NVM (Node Version Manager)
 echo "Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+brew install nvm
+export NVM_DIR="$HOME/.nvm"
+mkdir -p "$NVM_DIR"
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.zshrc
+source ~/.zshrc
 
 # Install Node.js 22 using NVM
 echo "Installing Node.js 22 using NVM..."
@@ -51,7 +54,7 @@ nvm alias default 22
 
 # Install PNPM
 echo "Installing PNPM..."
-curl -fsSL https://get.pnpm.io/install.sh | bash -
+brew install pnpm
 
 # Add PNPM to the shell environment
 echo "Adding PNPM to the shell environment..."
@@ -62,9 +65,8 @@ echo 'export PATH="$PNPM_HOME:$PATH"' >> ~/.zshrc
 
 # Install PHP 8.4
 echo "Installing PHP 8.4..."
-sudo add-apt-repository -y ppa:ondrej/php
-sudo apt update
-sudo apt install -y php8.4 php8.4-cli php8.4-fpm php8.4-mysql php8.4-xml php8.4-curl php8.4-mbstring php8.4-zip php8.4-soap
+brew tap shivammathur/php
+brew install php@8.4
 
 # Verify PHP installation
 echo "Verifying PHP installation..."
@@ -72,9 +74,7 @@ php -v
 
 # Install Composer
 echo "Installing Composer..."
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-echo 'export PATH="$PATH:/usr/local/bin"' >> ~/.zshrc
+brew install composer
 
 # Verify Composer installation
 echo "Verifying Composer installation..."
