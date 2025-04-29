@@ -25,6 +25,30 @@ echo "Adding Homebrew to the shell environment..."
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>~/.zprofile
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# Install Git
+echo "Installing Git..."
+brew install git
+
+# Verify Git installation
+echo "Verifying Git installation..."
+git --version
+
+# Install Docker
+echo "Installing Docker..."
+brew install --cask docker
+
+# Verify Docker installation
+echo "Verifying Docker installation..."
+docker --version
+
+# Install Tilt
+echo "Installing Tilt..."
+brew install tilt
+
+# Verify Tilt installation
+echo "Verifying Tilt installation..."
+tilt version
+
 # Install Powerlevel10k
 echo "Installing Powerlevel10k..."
 brew install romkatv/powerlevel10k/powerlevel10k
@@ -79,6 +103,98 @@ brew install composer
 # Verify Composer installation
 echo "Verifying Composer installation..."
 composer --version
+
+# Install GitHub CLI
+echo "Installing GitHub CLI..."
+brew install gh
+
+# Verify GitHub CLI installation
+echo "Verifying GitHub CLI installation..."
+gh --version
+
+# Install Laravel globally
+echo "Installing Laravel globally..."
+composer global require laravel/installer
+
+# Add Composer global bin to PATH
+echo "Adding Composer global bin to PATH..."
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >> ~/.zshrc
+
+# Install Vue.js globally
+echo "Installing Vue.js globally..."
+npm install -g @vue/cli
+
+# Verify Laravel and Vue.js installations
+echo "Verifying Laravel installation..."
+laravel --version
+echo "Verifying Vue.js installation..."
+vue --version
+
+# Move bash aliases to .zshrc
+echo "Moving bash aliases to .zshrc..."
+cat <<EOL >> ~/.zshrc
+
+# Git aliases
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+
+# Docker aliases
+alias dcu='docker-compose up'
+alias dcd='docker-compose down'
+alias dcb='docker-compose build'
+alias dcl='docker-compose logs'
+
+# NPM/Yarn aliases
+alias ni='npm install'
+alias nr='npm run'
+alias yi='yarn install'
+alias yr='yarn run'
+
+# Laravel aliases
+alias art='php artisan'
+alias tinker='php artisan tinker'
+alias migrate='php artisan migrate'
+alias seed='php artisan db:seed'
+
+# General development aliases
+alias serve='php -S localhost:8000'
+alias code='code .' # Open VS Code in the current directory
+
+# System aliases
+alias update='sudo apt update && sudo apt upgrade -y'
+alias cls='clear'
+alias ll='ls -la'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias g='git'
+alias h='history'
+alias c='clear'
+alias p='ping'
+alias df='df -h'
+alias du='du -h'
+alias free='free -h'
+alias top='htop'
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alais src='source ~/.zshrc'
+
+
+EOL
+
+# Remove ~/.bash_aliases if it exists
+echo "Removing ~/.bash_aliases if it exists..."
+rm -f ~/.bash_aliases
+
+# Source the updated .zshrc
+echo "Sourcing the updated .zshrc..."
+source ~/.zshrc
 
 # Finalize setup
 echo "Installation complete! Please restart your terminal or run 'source ~/.zshrc' to apply the changes."
