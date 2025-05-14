@@ -50,16 +50,16 @@ echo "Verifying Tilt installation..."
 tilt version
 
 # Install Powerlevel10k
-echo "Installing Powerlevel10k..."
-brew install romkatv/powerlevel10k/powerlevel10k
+#echo "Installing Powerlevel10k..."
+#brew install romkatv/powerlevel10k/powerlevel10k
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Set Powerlevel10k as the theme
-echo "Setting Powerlevel10k as the theme..."
-sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
+#echo "Setting Powerlevel10k as the theme..."
+#sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 
 # Install NVM (Node Version Manager)
 echo "Installing NVM..."
